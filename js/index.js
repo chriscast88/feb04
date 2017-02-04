@@ -35,13 +35,16 @@ function drawBlueDots(){
 function drawLines(){
   for (var i = 0; i < blueDots.length; i++) {
     var height = blueDots[i].location.dist(createVector(0,0,0));
-    var midPoint = p5.Vector.lerp(createVector(0,0,0), blueDots[i].location, 0.5);
-    var angle = p5.Vector.angleBetween(createVector(0,0,0), blueDots[i].location);
-    console.log(degrees(angle));
+    // var midPoint = p5.Vector.lerp(createVector(0,0,0), blueDots[i].location, 0.5);
+    // var angle = p5.Vector.angleBetween(createVector(0,0,0), blueDots[i].location);
+    // translate(midPoint.x,midPoint.y,midPoint.z);
+
+    var threedyStepper = p5.Vector.lerp(createVector(0,0,0), blueDots[i].location, 0.05);
     push();
-    translate(midPoint.x,midPoint.y,midPoint.z);
-    // rotateX(angle);
-    box(2,height,2);
+    for (var j = 0; j < 20; j++) {
+      translate(threedyStepper.x,threedyStepper.y,threedyStepper.z);
+      sphere(1);
+    }
     pop();
   }
 };
